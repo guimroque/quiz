@@ -43,16 +43,15 @@ export function ResultList(){
                 <Score>
                     <h3>Score:</h3>
                     <Hits>
-                    <CircularProgress 
-                    variant="determinate"
-                    thickness={12}
-                    style={{color:"white"}}
-                    value={score}/>
-                    {score/results.length}/{results.length}
+                        <CircularProgress 
+                        variant="determinate"
+                        thickness={12}
+                        style={{color:"white"}}
+                        value={score}/>
+                        {score/results.length}/{results.length}
                     </Hits>
                 </Score>
-                <DefaultButton
-                    onClick={retry}>
+                <DefaultButton onClick={retry}>
                     Retry
                 </DefaultButton>
             </Header>
