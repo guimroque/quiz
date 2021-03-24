@@ -23,10 +23,9 @@ export default function useQuestions() {
     
     //set functions
     async function  getQuestions(){
-            await axios.get("https://opentdb.com/api.php?amount=11&difficulty=hard&type=boolean")
+            await axios.get("https://opentdb.com/api.php?amount=10&difficulty=hard&type=boolean")
             .then(response=>{
                 var res = (response.data.results)
-                //console.log(decodeHTMLEntities(response.data.results.question))
                 setQuestions(res)
                 setQuestion(res[0])})
     }

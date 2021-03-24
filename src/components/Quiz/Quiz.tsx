@@ -11,13 +11,29 @@ import { Description, Footer, P, Container} from "./style";
 
 export function Quiz(){
     //setConsts
-    const [contador, setContador] = useState(1);
+    const [contador, setContador] = useState(0);
     const {getQuestions, question, getQuestion, validQuestion, result} = useQuestions();
     const {decodeHTMLEntities} = useConvert();
     
     //set functions
     const next = async()=>{
-        await getQuestion(contador)
+        setContador(contador+1)
+    }
+    const validatorTrue = async()=>{
+        await validQuestion(contador, "True")
+        await next()
+    }
+    const validatorFalse = async()=>{
+        await validQuestion(contador, "False")
+        await next()
+    }
+
+    //control render
+    useEffect(()=>{
+        getQuestions()
+    }, [])
+
+    useEffect(()=>{
         if(contador>=10){
             var hits = 0
             result.filter((result)=>{
@@ -30,24 +46,9 @@ export function Quiz(){
             localStorage.result = JSON.stringify(result)
             window.location.href = "http://localhost:3000/result"
         }else{
-            setContador(contador+1)
+            getQuestion(contador)
         }
-    }
-    
-    const validatorTrue = async()=>{
-        await validQuestion(contador, "True")
-        await next()
-    }
-
-    const validatorFalse = async()=>{
-        await validQuestion(contador, "False")
-        await next()
-    }
-
-
-    useEffect(()=>{
-        getQuestions()
-    },[])
+    },[contador])
 
     return(
         <div>
