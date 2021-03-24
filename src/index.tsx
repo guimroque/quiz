@@ -15,8 +15,6 @@ import { Quiz } from './components/Quiz/Quiz';
 import { ResultList } from './components/Result/ResultList';
 
 //router config
-
-
 ReactDOM.render(
   <Router>
   <GlobalStyle/>
